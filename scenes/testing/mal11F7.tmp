@@ -6,7 +6,7 @@
 [node name="Node2D" type="Node2D"]
 
 [node name="GooperController" parent="." instance=ExtResource("1_gtvp8")]
-position = Vector2(936, 494)
+position = Vector2(1015, 0)
 
 [node name="Ground" type="StaticBody2D" parent="."]
 position = Vector2(999, 932)
