@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://cnlo54kpiprbn"
-path="res://.godot/imported/boof.png-41a8d8a5e76702ca1d8fe86e0b0efcc3.ctex"
+uid="uid://ciur38utigd14"
+path="res://.godot/imported/harold.jpg-8412a98e3cf0f92ade184d287e8cac34.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/boof.png"
-dest_files=["res://.godot/imported/boof.png-41a8d8a5e76702ca1d8fe86e0b0efcc3.ctex"]
+source_file="res://assets/sprites/harold.jpg"
+dest_files=["res://.godot/imported/harold.jpg-8412a98e3cf0f92ade184d287e8cac34.ctex"]
 
 [params]
 
