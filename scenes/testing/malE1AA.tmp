@@ -8,6 +8,7 @@
 [node name="GooperController" parent="." instance=ExtResource("1_gtvp8")]
 position = Vector2(1015, 0)
 walking_speed = 300.0
+running_speed = 600.0
 jump_velocity = -400.0
 
 [node name="StaticBody2D" type="StaticBody2D" parent="."]
