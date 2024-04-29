@@ -1,0 +1,19 @@
+[remap]
+
+importer="oggvorbisstr"
+type="AudioStreamOggVorbis"
+uid="uid://dwm6u7ccfgdtg"
+path="res://.godot/imported/Dun dun dun dun.ogg-1e5f992b13f7049e9cda5cb058ac06ca.oggvorbisstr"
+
+[deps]
+
+source_file="res://assets/audio/Dun dun dun dun.ogg"
+dest_files=["res://.godot/imported/Dun dun dun dun.ogg-1e5f992b13f7049e9cda5cb058ac06ca.oggvorbisstr"]
+
+[params]
+
+loop=true
+loop_offset=0.0
+bpm=0.0
+beat_count=0
+bar_beats=4
