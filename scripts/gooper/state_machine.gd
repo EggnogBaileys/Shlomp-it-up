@@ -32,9 +32,6 @@ func on_state_changed(state, new_state_name):
 	if !new_state:
 		return 
 		
-	if current_state:
-		current_state.Exit()
-		
 	new_state.Enter()
 	
 	current_state = new_state

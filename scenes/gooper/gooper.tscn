@@ -1,8 +1,11 @@
-[gd_scene load_steps=13 format=3 uid="uid://bgoagfu32fh2c"]
+[gd_scene load_steps=22 format=3 uid="uid://bgoagfu32fh2c"]
 
 [ext_resource type="Script" path="res://scripts/gooper/gooper_controller.gd" id="1_swe37"]
 [ext_resource type="Texture2D" uid="uid://cx18nhv8q4uj7" path="res://assets/images/gooper/Gooper.png" id="2_uuqpu"]
-[ext_resource type="Script" path="res://scenes/gooper/state_machine.gd" id="3_3ng4j"]
+[ext_resource type="Script" path="res://scripts/gooper/state_machine.gd" id="3_bliuf"]
+[ext_resource type="Script" path="res://scripts/gooper/two_legs_state.gd" id="4_oqtl3"]
+[ext_resource type="Script" path="res://scripts/gooper/one_leg_state.gd" id="5_y52cp"]
+[ext_resource type="Script" path="res://scripts/gooper/no_legs_state.gd" id="6_yoyj0"]
 
 [sub_resource type="Animation" id="Animation_w0ixl"]
 resource_name = "Idle"
@@ -58,6 +61,80 @@ _data = {
 "Walk": SubResource("Animation_0hdfg")
 }
 
+[sub_resource type="Animation" id="Animation_hsyct"]
+resource_name = "Idle"
+length = 0.1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [12]
+}
+
+[sub_resource type="Animation" id="Animation_fuyvt"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [12]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_rkkuv"]
+_data = {
+"Idle": SubResource("Animation_hsyct"),
+"RESET": SubResource("Animation_fuyvt")
+}
+
+[sub_resource type="Animation" id="Animation_0vil6"]
+resource_name = "Idle"
+length = 0.1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [13]
+}
+
+[sub_resource type="Animation" id="Animation_jg8u2"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [13]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_knq1c"]
+_data = {
+"Idle": SubResource("Animation_0vil6"),
+"RESET": SubResource("Animation_jg8u2")
+}
+
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_3r5aa"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_wt6bt"]
@@ -72,13 +149,22 @@ position = Vector2(0, -7)
 texture = ExtResource("2_uuqpu")
 hframes = 8
 vframes = 2
-frame = 8
+frame = 13
 
-[node name="SpriteAnimator" type="AnimationPlayer" parent="GooperSprite"]
+[node name="TwoLegsAnimator" type="AnimationPlayer" parent="GooperSprite"]
 libraries = {
 "": SubResource("AnimationLibrary_72nbl")
 }
-autoplay = "Idle"
+
+[node name="OneLegAnimator" type="AnimationPlayer" parent="GooperSprite"]
+libraries = {
+"": SubResource("AnimationLibrary_rkkuv")
+}
+
+[node name="NoLegsAnimator" type="AnimationPlayer" parent="GooperSprite"]
+libraries = {
+"": SubResource("AnimationLibrary_knq1c")
+}
 
 [node name="Audio" type="Node2D" parent="."]
 
@@ -93,7 +179,20 @@ shape = SubResource("RectangleShape2D_3r5aa")
 position = Vector2(2, -1.5)
 shape = SubResource("RectangleShape2D_wt6bt")
 
-[node name="StateMachine" type="Node" parent="."]
-script = ExtResource("3_3ng4j")
+[node name="StateMachine" type="Node" parent="." node_paths=PackedStringArray("initial_state")]
+script = ExtResource("3_bliuf")
+initial_state = NodePath("two_legs_state")
+
+[node name="two_legs_state" type="Node" parent="StateMachine" node_paths=PackedStringArray("TwoLegsAnimator")]
+script = ExtResource("4_oqtl3")
+TwoLegsAnimator = NodePath("../../GooperSprite/TwoLegsAnimator")
+
+[node name="one_leg_state" type="Node" parent="StateMachine" node_paths=PackedStringArray("OneLegAnimator")]
+script = ExtResource("5_y52cp")
+OneLegAnimator = NodePath("../../GooperSprite/OneLegAnimator")
+
+[node name="no_legs_state" type="Node" parent="StateMachine" node_paths=PackedStringArray("NoLegsAnimator")]
+script = ExtResource("6_yoyj0")
+NoLegsAnimator = NodePath("../../GooperSprite/NoLegsAnimator")
 
 [connection signal="area_entered" from="Area2D" to="." method="_on_area_2d_area_entered"]
