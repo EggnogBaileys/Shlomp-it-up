@@ -1,7 +1,8 @@
-[gd_scene load_steps=12 format=3 uid="uid://bgoagfu32fh2c"]
+[gd_scene load_steps=13 format=3 uid="uid://bgoagfu32fh2c"]
 
 [ext_resource type="Script" path="res://scripts/gooper/gooper_controller.gd" id="1_swe37"]
 [ext_resource type="Texture2D" uid="uid://cx18nhv8q4uj7" path="res://assets/images/gooper/Gooper.png" id="2_uuqpu"]
+[ext_resource type="Script" path="res://scenes/gooper/state_machine.gd" id="3_3ng4j"]
 
 [sub_resource type="Animation" id="Animation_w0ixl"]
 resource_name = "Idle"
@@ -91,5 +92,8 @@ shape = SubResource("RectangleShape2D_3r5aa")
 [node name="PhysicalCollision" type="CollisionShape2D" parent="."]
 position = Vector2(2, -1.5)
 shape = SubResource("RectangleShape2D_wt6bt")
+
+[node name="StateMachine" type="Node" parent="."]
+script = ExtResource("3_3ng4j")
 
 [connection signal="area_entered" from="Area2D" to="." method="_on_area_2d_area_entered"]
