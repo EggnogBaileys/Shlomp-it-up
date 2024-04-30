@@ -20,12 +20,6 @@ tracks/0/keys = {
 "values": [8, 9, 10, 11, 12, 13, 14, 15]
 }
 
-[sub_resource type="Animation" id="Animation_0hdfg"]
-resource_name = "Walk"
-
-[sub_resource type="Animation" id="Animation_rcmtr"]
-resource_name = "Run"
-
 [sub_resource type="Animation" id="Animation_22vbe"]
 resource_name = "Jump"
 
@@ -47,6 +41,12 @@ tracks/0/keys = {
 "values": [8]
 }
 
+[sub_resource type="Animation" id="Animation_rcmtr"]
+resource_name = "Run"
+
+[sub_resource type="Animation" id="Animation_0hdfg"]
+resource_name = "Walk"
+
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_72nbl"]
 _data = {
 "Idle": SubResource("Animation_w0ixl"),
@@ -60,14 +60,14 @@ _data = {
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_3r5aa"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_wt6bt"]
-size = Vector2(56, 106)
+size = Vector2(28, 53)
 
 [node name="GooperController" type="CharacterBody2D" groups=["gooper"]]
 script = ExtResource("1_swe37")
 
 [node name="GooperSprite" type="Sprite2D" parent="."]
+texture_filter = 1
 position = Vector2(0, -7)
-scale = Vector2(2, 2)
 texture = ExtResource("2_uuqpu")
 hframes = 8
 vframes = 3
@@ -89,7 +89,7 @@ autoplay = "Idle"
 shape = SubResource("RectangleShape2D_3r5aa")
 
 [node name="PhysicalCollision" type="CollisionShape2D" parent="."]
-position = Vector2(3, 2)
+position = Vector2(2, -1.5)
 shape = SubResource("RectangleShape2D_wt6bt")
 
 [connection signal="area_entered" from="Area2D" to="." method="_on_area_2d_area_entered"]

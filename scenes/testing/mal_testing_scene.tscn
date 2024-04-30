@@ -8,15 +8,19 @@
 [node name="GooperController" parent="." instance=ExtResource("1_gtvp8")]
 position = Vector2(936, 494)
 
+[node name="Camera2D" type="Camera2D" parent="GooperController"]
+position = Vector2(2, -11)
+zoom = Vector2(3, 3)
+
 [node name="Ground" type="StaticBody2D" parent="."]
 position = Vector2(999, 932)
 
 [node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Ground"]
 position = Vector2(-300, -153)
-polygon = PackedVector2Array(1, -4, -13, 316, 154, 207, 600, 210, 601, 141, 441, 62, 226, 76, 163, 117, 62, 42)
+polygon = PackedVector2Array(-8, 6, -13, 316, 154, 207, 600, 210, 601, 141, 403, 93, 235, 91, 168, 119, 43, 21)
 
 [node name="Ground" type="Sprite2D" parent="Ground"]
-position = Vector2(5, 8)
+position = Vector2(4.99988, 40.9628)
 rotation = 1.5708
-scale = Vector2(0.5, 1)
+scale = Vector2(0.604478, 1)
 texture = ExtResource("2_b27g5")
